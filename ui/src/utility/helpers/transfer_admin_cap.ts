@@ -2,6 +2,11 @@ import { Transaction } from "@mysten/sui/transactions";
 
 export const transferAdminCap = (adminCapId: string, to: string) => {
   const tx = new Transaction();
+
+  tx.transferObjects(
+  [tx.object(adminCapId)], // 1. parametre: obje listesi
+  to                       // 2. parametre: recipient address
+);
   
   // TODO: Transfer admin capability to another address
   // Use tx.transferObjects() method

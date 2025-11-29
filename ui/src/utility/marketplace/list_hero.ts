@@ -7,6 +7,14 @@ export const listHero = (
 ) => {
   const tx = new Transaction();
 
+  const priceInMist = BigInt(Math.floor(parseFloat(priceInSui) * 1_000_000_000));
+
+  tx.moveCall({
+    target: `${packageId}::marketplace::list_hero`,
+    typeArguments: [],
+    arguments: [tx.object(heroId), tx.pure.u64(priceInMist)],
+  });
+
   // TODO: Convert SUI to MIST (1 SUI = 1,000,000,000 MIST)
   // const priceInMist = ?
 

@@ -8,6 +8,15 @@ export const createHero = (
 ) => {
   const tx = new Transaction();
 
+  tx.moveCall({
+    target: `${packageId}::arena::create_hero`,
+    typeArguments: [],
+    arguments: [
+      tx.pure.string(name),
+      tx.pure.string(imageUrl),
+      tx.pure.u64(BigInt(power)),
+    ],
+  });
   // TODO: Add moveCall to create a hero
   // Function: `${packageId}::hero::create_hero`
   // Arguments: name (string), imageUrl (string), power (u64)
